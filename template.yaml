@@ -1,0 +1,122 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  Lambasubmit:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: upload_post.handler
+      Runtime:  nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/admin/upload_post/
+      Role: !GetAtt RootRole.Arn
+      Events:
+        ProxyApiRoot:
+          Type: Api
+          Properties:
+            RestApiId: !Ref Api
+            Path: /submit-post
+            Method: post
+
+
+  Lambaget:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: get.handler
+      Runtime:  nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/public/get/
+      Role: !GetAtt RootRole.Arn
+      Events:
+        ProxyApiRoot:
+          Type: Api
+          Properties:
+            RestApiId: !Ref Api
+            Path: /
+            Method: get
+
+  Api: 
+    DependsOn:
+      - Lambaget
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      DefinitionUri: ./swagger.yaml
+      Variables:
+        # NOTE: Before using this template, replace the <<region>> and <<account>> fields
+        #       in Lambda integration URI in the swagger file to region and accountId 
+        #       you are deploying to
+        LambdaFunctionName: !Ref Lambaget
+        LambdaFunctionName1: !Ref Lambasubmit
+
+  LambdaInvokePermission:
+    Type: 'AWS::Lambda::Permission'
+    Properties:
+      FunctionName: !GetAtt 
+        - Lambaget
+        - Arn
+      Action: 'lambda:*'
+      Principal: apigateway.amazonaws.com
+
+  RootRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      Path: /
+
+  RolePolicies:
+    Type: 'AWS::IAM::Policy'
+    Properties:
+      PolicyName: root
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: Stmt1481101640000
+            Effect: Allow
+            Action:
+              - 's3:DeleteObject'
+              - 's3:GetObject'
+              - 's3:PutObject'
+              - 's3:PutObjectAcl'
+            Resource:
+              - '*'
+          - Sid: Stmt1101716000
+            Effect: Allow
+            Action:
+              - 'logs:CreateLogGroup'
+              - 'logs:CreateLogStream'
+              - 'logs:PutLogEvents'
+            Resource: 'arn:aws:logs:*:*:*'
+          - Sid: Stmt1481101716000
+            Effect: Allow
+            Action:
+              - 'dynamodb:BatchGetItem'
+              - 'dynamodb:BatchWriteItem'
+              - 'dynamodb:DeleteItem'
+              - 'dynamodb:GetItem'
+              - 'dynamodb:GetRecords'
+              - 'dynamodb:PutItem'
+              - 'dynamodb:Query'
+              - 'dynamodb:Scan'
+              - 'dynamodb:UpdateItem'
+              - 'dynamodb:Put'
+            Resource:
+              - '*'
+          - Sid: Stmt1481101765000
+            Effect: Allow
+            Action:
+              - 'ses:SendEmail'
+              - 'ses:SendRawEmail'
+            Resource:
+              - '*'
+      Roles:
+        - !Ref RootRole
