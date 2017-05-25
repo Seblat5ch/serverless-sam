@@ -14,7 +14,7 @@
                 "Timeout": 10,
                 "MemorySize": 512,
                 "CodeUri": "./src/public/get/",
-                "Role": "RootRole"
+                "Role": {"Fn::GetAtt: ["RootRole","Arn"]}
             }
         },
         "APIGateways": {
@@ -24,9 +24,7 @@
                 "StageName": "Prod",
                 "DefinitionUri": "./swagger-final.yaml",
                 "Variables": {
-                    "LambdaFunctionName": {
-                        "Ref": "get"
-                    }
+                    "LambdaFunctionName": {"Ref": "get"}
                 }
             }
         },
