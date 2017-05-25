@@ -1,34 +1,35 @@
+AWSTemplateFormatVersion: 2010-09-09
 Transform: 'AWS::Serverless-2016-10-31'
 Resources:
-    get:
-        Type: AWS::Serverless::Function
-        DependsOn: RootRole
-        Properties:
-            FunctionName: !Sub '${AWS::StackName}-get'
-            Handler: index.handler
-            Runtime: nodejs4.3
-            Timeout: 10
-            MemorySize: 512            
-            CodeUri: ./src/public/get/
-            Role: RootRole
-    APIGateways:
-        DependsOn: get
-        Type: AWS::Serverless::Api
-        Properties:
-            StageName: Prod
-            DefinitionUri: ./swagger-final.yaml
-            Variables:
-              LambdaFunctionName: !Ref get
-    RootRole:
-        Type: AWS::IAM::Role
-        Properties:
-          AssumeRolePolicyDocument:
-            Version: 2012-10-17
-            Statement:
-              - Effect: Allow
-                Principal:
-                  Service:
-                    - lambda.amazonaws.com
-                Action:
-                  - sts:AssumeRole
-          Path: /
+  get:
+    Type: 'AWS::Serverless::Function'
+    DependsOn: RootRole
+    Properties:
+      FunctionName: Fn::Sub: '${AWS::StackName}-get'
+      Handler: index.handler
+      Runtime: nodejs4.3
+      Timeout: 10
+      MemorySize: 512
+      CodeUri: ./src/public/get/
+      Role: Fn::GetAtt: [RootRole,Arn]
+  APIGateway:
+    DependsOn: get
+    Type: 'AWS::Serverless::Api'
+    Properties:
+      StageName: Prod
+      DefinitionUri: ./swagger-final.yaml
+      Variables:
+        LambdaFunctionName: Fn::Ref: get
+  RootRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      Path: /
