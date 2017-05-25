@@ -9,6 +9,9 @@ Resources:
             Timeout: 10
             MemorySize: 512            
             CodeUri: ./src/public/get/
+            Role: !GetAtt
+              - RootRole
+              - Arn
     APIGateways:
         DependsOn: get
         Type: AWS::Serverless::Api
