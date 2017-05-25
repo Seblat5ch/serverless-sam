@@ -1,18 +1,19 @@
 Transform: 'AWS::Serverless-2016-10-31'
 Resources:
-  THWDJF:
-    Type: AWS::Serverless::Api
-    Properties:
-      StageName: prod
-      DefinitionUri: ./swagger-final.yaml
-      Variables:
-        # NOTE: Before using this template, replace the <<region>> and <<account>> fields
-        #       in Lambda integration URI in the swagger file to region and accountId
-        #       you are deploying to
-        LambdaFunctionName: !Ref get
     get:
         Type: AWS::Serverless::Function
         Properties:
             Handler: index.handler
             Runtime: nodejs4.3
             CodeUri: ./src/public/get/
+    THWDJF:
+        DependsOn: get
+        Type: AWS::Serverless::Api
+        Properties:
+            StageName: Prod
+            DefinitionUri: ./swagger-final.yaml
+            Variables:
+              # NOTE: Before using this template, replace the <<region>> and <<account>> fields
+              #       in Lambda integration URI in the swagger file to region and accountId
+              #       you are deploying to
+              LambdaFunctionName: !Ref get
