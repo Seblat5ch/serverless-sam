@@ -26,7 +26,7 @@
             "DependsOn": "get",
             "Type": "AWS::Serverless::Api",
             "Properties": {
-                "StageName": "Prod"
+                "StageName": "Prod",
                 "DefinitionBody": {
                     "Fn::Transform": {
                         "Name": "AWS::Include",
