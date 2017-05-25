@@ -14,17 +14,26 @@
                 "Timeout": 10,
                 "MemorySize": 512,
                 "CodeUri": "./src/public/get/",
-                "Role": {"Fn::GetAtt": ["RootRole","Arn"]}
+                "Role": {
+                    "Fn::GetAtt": [
+                        "RootRole",
+                        "Arn"
+                    ]
+                }
             }
         },
         "APIGateway": {
             "DependsOn": "get",
             "Type": "AWS::Serverless::Api",
             "Properties": {
-                "StageName": "Prod",
-                "DefinitionUri": "./swagger-final.yaml",
-                "Variables": {
-                    "LambdaFunctionName": {"Ref": "get"}
+                "StageName": "Prod"
+            },
+            "DefinitionBody": {
+                "Fn::Transform": {
+                    "Name": "AWS::Include",
+                    "Parameters": {
+                        "Location": "s3://all-ctrail-logs-east-1/swagger-final.yaml"
+                    }
                 }
             }
         },
