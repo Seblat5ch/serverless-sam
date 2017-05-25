@@ -1,4 +1,3 @@
-AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
 Resources:
     get:
@@ -10,9 +9,6 @@ Resources:
             Timeout: 10
             MemorySize: 512            
             CodeUri: ./src/public/get/
-            Role: !GetAtt
-              - RootRole
-              - Arn
     APIGateways:
         DependsOn: get
         Type: AWS::Serverless::Api
