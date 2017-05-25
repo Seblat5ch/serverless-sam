@@ -1,64 +1,308 @@
-AWSTemplateFormatVersion: '2010-09-09'
-Transform: AWS::Serverless-2016-10-31
+AWSTemplateFormatVersion: 2010-09-09
+Transform: 'AWS::Serverless-2016-10-31'
+Description: >-
+  Simple API Endpoint configured using Swagger specified inline and backed by a
+  Lambda function
 Resources:
-  Lambasubmit:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: upload_post.handler
-      Runtime:  nodejs4.3
-      MemorySize: 512
-      Timeout: 10
-      CodeUri: ./src/admin/upload_post/
-      Role: !GetAtt RootRole.Arn
-      Events:
-        ProxyApiRoot:
-          Type: Api
-          Properties:
-            RestApiId: !Ref Api
-            Path: /submit-post
-            Method: post
-
-
-  Lambaget:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: get.handler
-      Runtime:  nodejs4.3
-      MemorySize: 512
-      Timeout: 10
-      CodeUri: ./src/public/get/
-      Role: !GetAtt RootRole.Arn
-      Events:
-        ProxyApiRoot:
-          Type: Api
-          Properties:
-            RestApiId: !Ref Api
-            Path: /
-            Method: get
-
-  Api: 
-    DependsOn:
-      - Lambaget
-    Type: AWS::Serverless::Api
+  MyApi:
+    Type: 'AWS::Serverless::Api'
     Properties:
       StageName: prod
-      DefinitionUri: ./swagger.yaml
+      DefinitionUri: ./swagger-final.yaml
+      StageName: Prod
       Variables:
         # NOTE: Before using this template, replace the <<region>> and <<account>> fields
         #       in Lambda integration URI in the swagger file to region and accountId 
         #       you are deploying to
-        LambdaFunctionName: !Ref Lambaget
-        LambdaFunctionName1: !Ref Lambasubmit
-
-  LambdaInvokePermission:
-    Type: 'AWS::Lambda::Permission'
+        LambdaFunctionName: !Ref get
+  get:
+    Type: 'AWS::Serverless::Function'
     Properties:
-      FunctionName: !GetAtt 
-        - Lambaget
+      FunctionName: !Sub '${AWS::StackName}-get'
+      Handler: get.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/public/get/
+      Role: !GetAtt 
+        - RootRole
         - Arn
-      Action: 'lambda:*'
-      Principal: apigateway.amazonaws.com
-
+  getpost:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-getpost'
+      Handler: get_post.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/public/get_post/
+      Role: !GetAtt 
+        - RootRole
+        - Arn
+  getpostbycatagory:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-getpostsbycategory'
+      Handler: get_posts_by_category.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/public/get_posts_by_category/
+      Role: !GetAtt 
+        - RootRole
+        - Arn
+  listposts:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-listposts'
+      Handler: list_posts.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/public/list_posts/
+      Role: !GetAtt 
+        - RootRole
+        - Arn
+  login:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-login'
+      Handler: login.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/public/login/
+      Role: !GetAtt 
+        - RootRole
+        - Arn
+  rss:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-rss'
+      Handler: rss.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/public/rss/
+      Role: !GetAtt 
+        - RootRole
+        - Arn
+  sendmessage:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-sendmessage'
+      Handler: send_message.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/public/send_message/
+      Role: !GetAtt 
+        - RootRole
+        - Arn
+  about:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-about'
+      Handler: about.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/public/about/
+      Role: !GetAtt 
+        - RootRole
+        - Arn
+  contact:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-contact'
+      Handler: contact.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/public/contact/
+      Role: !GetAtt 
+        - RootRole
+        - Arn
+  addcategory:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-addcategory'
+      Handler: add_category.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/admin/add_category/
+      Role: !GetAtt 
+        - RootRole
+        - Arn
+  deletepost:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-deletepost'
+      Handler: delete_post.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/admin/delete_post/
+      Role: !GetAtt 
+        - RootRole
+        - Arn
+  editcategory:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-editcategory'
+      Handler: edit_category.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/admin/edit_category/
+      Role: !GetAtt 
+        - RootRole
+        - Arn
+  getcategories:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-getcategories'
+      Handler: get_categories.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/admin/get_categories/
+      Role: !GetAtt 
+        - RootRole
+        - Arn
+  getpostadmin:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-getpostadmin'
+      Handler: get_post_admin.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/admin/get_post_admin/
+      Role: !GetAtt 
+        - RootRole
+        - Arn
+  getsettings:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-getsettings'
+      Handler: get_settings.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/admin/get_settings/
+      Role: !GetAtt 
+        - RootRole
+        - Arn
+  listpostsadmin:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-listpostsadmin'
+      Handler: list_posts_admin.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/admin/list_posts_admin/
+      Role: !GetAtt 
+        - RootRole
+        - Arn
+  movecategory:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-movecategory'
+      Handler: move_category.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/admin/move_category/
+      Role: !GetAtt 
+        - RootRole
+        - Arn
+  publishpost:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-publishpost'
+      Handler: publish_post.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/admin/publish_post/
+      Role: !GetAtt 
+        - RootRole
+        - Arn
+  removecategory:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-removecategory'
+      Handler: remove_category.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/admin/remove_category/
+      Role: !GetAtt 
+        - RootRole
+        - Arn
+  setsettings:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-setsettings'
+      Handler: set_settings.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/admin/set_settings/
+      Role: !GetAtt 
+        - RootRole
+        - Arn
+  unpublishpost:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-unpublishpost'
+      Handler: unpublish_post.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/admin/unpublish_post/
+      Role: !GetAtt 
+        - RootRole
+        - Arn
+  uploadimage:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-uploadimage'
+      Handler: upload_image.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/admin/upload_image/
+      Role: !GetAtt 
+        - RootRole
+        - Arn
+  uploadpost:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-uploadpost'
+      Handler: upload_post.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/admin/upload_post/
+      Role: !GetAtt 
+        - RootRole
+        - Arn
+  uploadtemplateimage:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      FunctionName: !Sub '${AWS::StackName}-uploadtemplateimage'
+      Handler: upload_template_image.handler
+      Runtime: nodejs4.3
+      MemorySize: 512
+      Timeout: 10
+      CodeUri: ./src/admin/upload_template_image/
+      Role: !GetAtt 
+        - RootRole
+        - Arn
   RootRole:
     Type: 'AWS::IAM::Role'
     Properties:
@@ -72,51 +316,3 @@ Resources:
             Action:
               - 'sts:AssumeRole'
       Path: /
-
-  RolePolicies:
-    Type: 'AWS::IAM::Policy'
-    Properties:
-      PolicyName: root
-      PolicyDocument:
-        Version: 2012-10-17
-        Statement:
-          - Sid: Stmt1481101640000
-            Effect: Allow
-            Action:
-              - 's3:DeleteObject'
-              - 's3:GetObject'
-              - 's3:PutObject'
-              - 's3:PutObjectAcl'
-            Resource:
-              - '*'
-          - Sid: Stmt1101716000
-            Effect: Allow
-            Action:
-              - 'logs:CreateLogGroup'
-              - 'logs:CreateLogStream'
-              - 'logs:PutLogEvents'
-            Resource: 'arn:aws:logs:*:*:*'
-          - Sid: Stmt1481101716000
-            Effect: Allow
-            Action:
-              - 'dynamodb:BatchGetItem'
-              - 'dynamodb:BatchWriteItem'
-              - 'dynamodb:DeleteItem'
-              - 'dynamodb:GetItem'
-              - 'dynamodb:GetRecords'
-              - 'dynamodb:PutItem'
-              - 'dynamodb:Query'
-              - 'dynamodb:Scan'
-              - 'dynamodb:UpdateItem'
-              - 'dynamodb:Put'
-            Resource:
-              - '*'
-          - Sid: Stmt1481101765000
-            Effect: Allow
-            Action:
-              - 'ses:SendEmail'
-              - 'ses:SendRawEmail'
-            Resource:
-              - '*'
-      Roles:
-        - !Ref RootRole
