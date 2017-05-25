@@ -36,7 +36,7 @@ paths:
             categories_posts_table\": \"${stageVariables.categories_posts_table}\"\
             ,\n    \n    \"site_base_url\": \"${stageVariables.site_base_url}\",\n\
             \    \n    \"template\": \"${stageVariables.template}\"\n}\n"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
