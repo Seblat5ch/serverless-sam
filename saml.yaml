@@ -12,7 +12,7 @@ Resources:
       MemorySize: 512
       CodeUri: ./src/public/get/
       Role: Fn::GetAtt: [RootRole,Arn]
-  APIGateway:
+  APIGatewavy:
     DependsOn: get
     Type: 'AWS::Serverless::Api'
     Properties:
