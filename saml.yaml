@@ -5,7 +5,7 @@ Resources:
     Type: 'AWS::Serverless::Function'
     DependsOn: RootRole
     Properties:
-      FunctionName: !Sub '${AWS::StackName}-get'
+      FunctionName: get
       Handler: index.handler
       Runtime: nodejs4.3
       Timeout: 10
