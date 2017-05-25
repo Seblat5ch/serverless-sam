@@ -1,12 +1,19 @@
+AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
 Resources:
     get:
         Type: AWS::Serverless::Function
         Properties:
+            FunctionName: !Sub '${AWS::StackName}-get'
             Handler: index.handler
             Runtime: nodejs4.3
+            Timeout: 10
+            MemorySize: 512            
             CodeUri: ./src/public/get/
-    THWDJF:
+            Role: !GetAtt
+              - RootRole
+              - Arn
+    APIGateways:
         DependsOn: get
         Type: AWS::Serverless::Api
         Properties:
@@ -17,3 +24,16 @@ Resources:
               #       in Lambda integration URI in the swagger file to region and accountId
               #       you are deploying to
               LambdaFunctionName: !Ref get
+    RootRole:
+        Type: 'AWS::IAM::Role'
+        Properties:
+          AssumeRolePolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Effect: Allow
+                Principal:
+                  Service:
+                    - lambda.amazonaws.com
+                Action:
+                  - 'sts:AssumeRole'
+          Path: /
