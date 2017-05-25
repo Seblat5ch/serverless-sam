@@ -66,7 +66,7 @@ paths:
           application/json: "{\n    \"posts_table\": \"${stageVariables.posts_table}\"\
             ,\n    \"objects_table\": \"${stageVariables.objects_table}\",\n    \"\
             template\": \"${stageVariables.template}\"\n}\n"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -91,7 +91,7 @@ paths:
             \  \"token_name\": \"${stageVariables.token_name}\",\n    \"cookie\":\
             \ \"$input.params('Cookie')\",\n    \"category\": $input.json('$.category')\n\
             }\n"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -137,7 +137,7 @@ paths:
             \    #foreach($param in $input.params().path.keySet())\n    \"$param\"\
             : \"$util.escapeJavaScript($input.params().path.get($param))\" #if($foreach.hasNext),#end\n\
             \n    #end\n  }  \n}"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -184,7 +184,7 @@ paths:
             \    #foreach($param in $input.params().path.keySet())\n    \"$param\"\
             : \"$util.escapeJavaScript($input.params().path.get($param))\" #if($foreach.hasNext),#end\n\
             \n    #end\n  }  \n}"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -234,7 +234,7 @@ paths:
             \    #foreach($param in $input.params().path.keySet())\n    \"$param\"\
             : \"$util.escapeJavaScript($input.params().path.get($param))\" #if($foreach.hasNext),#end\n\
             \n    #end\n  }  \n}"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -265,7 +265,7 @@ paths:
             ,\n    \"objects_table\": \"${stageVariables.objects_table}\",\n    \n\
             \    \"captcha_key\": \"${stageVariables.recaptcha_privKey}\",\n    \"\
             template\": \"${stageVariables.template}\"\n}\n"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -291,7 +291,7 @@ paths:
             ,\n\n    \"articles_bucket\": \"${stageVariables.articles_bucket}\",\n\
             \    \"articles_bucket_path\": \"${stageVariables.articles_bucket_path}\"\
             ,\n\n    \"post_id\": $input.json(\"$.post_id\")\n}"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -316,7 +316,7 @@ paths:
             : \"${stageVariables.objects_table}\",\n\n    \"cookie\": \"$input.params('Cookie')\"\
             ,\n    \n    \"category_id\": $input.json('$.category_id'),\n    \"category_name\"\
             : $input.json('$.category_name')\n}\n"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -340,7 +340,7 @@ paths:
             ,\n    \"objects_table\": \"${stageVariables.objects_table}\",\n    \n\
             \    \"token_name\": \"${stageVariables.token_name}\",\n    \"cookie\"\
             : \"$input.params('Cookie')\"\n}\n"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -366,7 +366,7 @@ paths:
             ,\n    \"articles_bucket_path\": \"${stageVariables.articles_bucket_path}\"\
             ,\n\n    \"cookie\": \"$input.params('Cookie')\",\n    \n    \"post_id\"\
             : $input.json(\"$.post_id\")\n}"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -390,7 +390,7 @@ paths:
             ,\n    \"token_name\": \"${stageVariables.token_name}\",\n    \"objects_table\"\
             : \"${stageVariables.objects_table}\",\n    \n    \"cookie\": \"$input.params('Cookie')\"\
             \n}\n"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -414,7 +414,7 @@ paths:
             ,\n    \"token_name\": \"${stageVariables.token_name}\",\n    \"objects_table\"\
             : \"${stageVariables.objects_table}\",\n    \n    \"cookie\": \"$input.params('Cookie')\"\
             \n}\n"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -446,7 +446,7 @@ paths:
             ,\n    \"objects_table\": \"${stageVariables.objects_table}\",\n    \n\
             \    \"site_base_url\": \"${stageVariables.site_base_url}\",\n    \n \
             \   \"template\": \"${stageVariables.template}\"\n}\n"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -470,7 +470,7 @@ paths:
             ,\n    \"token_name\": \"${stageVariables.token_name}\",\n    \"posts_table\"\
             : \"${stageVariables.posts_table}\",\n    \"cookie\": \"$input.params('Cookie')\"\
             \n}\n"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -501,7 +501,7 @@ paths:
             ,\n    \"token_name\": \"${stageVariables.token_name}\",\n    \"admin_pass\"\
             : \"${stageVariables.admin_pass}\",\n    \"user_pass\": $input.json('$.password'),\n\
             \    \"remember_me\": $input.json('$.remember_me')\n}\n"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -526,7 +526,7 @@ paths:
             : \"$input.params('Cookie')\",\n    \"objects_table\": \"${stageVariables.objects_table}\"\
             ,\n    \n    \"category_id\": $input.json('$.category_id'),\n    \"direction\"\
             : $input.json('$.direction')\n}\n"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -568,7 +568,7 @@ paths:
             \    #foreach($param in $input.params().path.keySet())\n    \"$param\"\
             : \"$util.escapeJavaScript($input.params().path.get($param))\" #if($foreach.hasNext),#end\n\
             \n    #end\n  }  \n}"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -615,7 +615,7 @@ paths:
             \    #foreach($param in $input.params().path.keySet())\n    \"$param\"\
             : \"$util.escapeJavaScript($input.params().path.get($param))\" #if($foreach.hasNext),#end\n\
             \n    #end\n  }  \n}"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -663,7 +663,7 @@ paths:
             : {\r\n    #foreach($param in $input.params().path.keySet())\r\n    \"\
             $param\": \"$util.escapeJavaScript($input.params().path.get($param))\"\
             \ #if($foreach.hasNext),#end\r\n\r\n    #end\r\n  }  \r\n}"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -688,7 +688,7 @@ paths:
             : \"${stageVariables.posts_table}\",\n \n    \"cookie\": \"$input.params('Cookie')\"\
             ,\n    \n    \"post_id\": $input.json(\"$.post_id\"),\n    \"date\": $input.json(\"\
             $.date\")\n}"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -713,7 +713,7 @@ paths:
             : \"${stageVariables.objects_table}\",\n    \n    \"category_id\": $input.json(\"\
             $.category_id\"),\n    \"precedence\": $input.json(\"$.precedence\")\n\
             }\n"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -745,7 +745,7 @@ paths:
             ,\n    \"objects_table\": \"${stageVariables.objects_table}\",\n    \n\
             \    \"site_base_url\": \"${stageVariables.site_base_url}\",\n    \n \
             \   \"template\": \"${stageVariables.template}\"\n}\n"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         contentHandling: "CONVERT_TO_TEXT"
@@ -771,7 +771,7 @@ paths:
             ,\n\n    \"name\": $input.json(\"$.name\"),\n    \"email\": $input.json(\"\
             $.email\"),\n    \"message\": $input.json(\"$.message\"),\n    \"captchaResponse\"\
             : $input.json(\"$.captcha\")\n}"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -795,7 +795,7 @@ paths:
             ,\n    \"token_name\": \"${stageVariables.token_name}\",\n    \"cookie\"\
             : \"$input.params('Cookie')\",\n    \"objects_table\": \"${stageVariables.objects_table}\"\
             ,\n    \n    \"new_settings\": $input.json(\"$.new_settings\")\n}\n"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -824,7 +824,7 @@ paths:
             : $input.json('$.post_status'),\n    \"title\": $input.json('$.title'),\n\
             \    \"categories\": $input.json('$.categories'),\n    \"date\": $input.json('$.date'),\n\
             \    \"html\": $input.json('$.html')\n}\n"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -849,7 +849,7 @@ paths:
             : \"${stageVariables.posts_table}\",\n \n    \"cookie\": \"$input.params('Cookie')\"\
             ,\n    \n    \"post_id\": $input.json(\"$.post_id\"),\n    \"date\": $input.json(\"\
             $.date\")\n}"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -878,7 +878,7 @@ paths:
             ,\n    \"image_resize_max_width\": \"${stageVariables.image_resize_max_width}\"\
             ,\n    \n    \"cookie\": \"$input.params('Cookie')\",\n    \"image\":\
             \ $input.json('$.image')\n}\n"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
@@ -907,7 +907,7 @@ paths:
             ,\n    \"image_resize_max_width\": \"${stageVariables.image_resize_max_width}\"\
             ,\n    \n    \"cookie\": \"$input.params('Cookie')\",\n    \"image\":\
             \ $input.json('$.image')\n}\n"
-        uri: "arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations"
+        uri: arn:aws:apigateway:REGION:lambda:path/2015-03-31/functions/arn:aws:lambda:REGION:111111111111:function:${stageVariables.LambdaFunctionName}/invocations
         passthroughBehavior: "when_no_templates"
         httpMethod: "POST"
         type: "aws"
