@@ -14,7 +14,7 @@
                 "Timeout": 10,
                 "MemorySize": 512,
                 "CodeUri": "./src/public/get/",
-                "Role": {"Fn::GetAtt: ["RootRole","Arn"]}
+                "Role": {"Fn::GetAtt": ["RootRole","Arn"]}
             }
         },
         "APIGateways": {
