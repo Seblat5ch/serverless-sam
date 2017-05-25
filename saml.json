@@ -17,7 +17,7 @@
                 "Role": {"Fn::GetAtt": ["RootRole","Arn"]}
             }
         },
-        "APIGateways": {
+        "APIGateway": {
             "DependsOn": "get",
             "Type": "AWS::Serverless::Api",
             "Properties": {
