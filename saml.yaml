@@ -5,7 +5,7 @@ Resources:
     Type: 'AWS::Serverless::Function'
     DependsOn: RootRole
     Properties:
-      FunctionName: Fn::Sub: '${AWS::StackName}-get'
+      FunctionName: !Sub '${AWS::StackName}-get'
       Handler: index.handler
       Runtime: nodejs4.3
       Timeout: 10
@@ -19,7 +19,7 @@ Resources:
       StageName: Prod
       DefinitionUri: ./swagger-final.yaml
       Variables:
-        LambdaFunctionName: Fn::Ref: get
+        LambdaFunctionName: !Ref get
   RootRole:
     Type: 'AWS::IAM::Role'
     Properties:
