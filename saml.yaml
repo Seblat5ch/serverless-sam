@@ -2,6 +2,7 @@ Transform: 'AWS::Serverless-2016-10-31'
 Resources:
     get:
         Type: AWS::Serverless::Function
+        DependsOn: RootRole
         Properties:
             FunctionName: !Sub '${AWS::StackName}-get'
             Handler: index.handler
@@ -9,9 +10,7 @@ Resources:
             Timeout: 10
             MemorySize: 512            
             CodeUri: ./src/public/get/
-            Role: !GetAtt
-              - RootRole
-              - Arn
+            Role: RootRole
     APIGateways:
         DependsOn: get
         Type: AWS::Serverless::Api
