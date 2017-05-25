@@ -11,8 +11,8 @@ Resources:
       Timeout: 10
       MemorySize: 512
       CodeUri: ./src/public/get/
-      Role: Fn::GetAtt: [RootRole,Arn]
-  APIGatewavy:
+      Role: !GetAtt RootRole.Arn
+  APIGateway:
     DependsOn: get
     Type: 'AWS::Serverless::Api'
     Properties:
