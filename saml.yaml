@@ -7,19 +7,20 @@ Parameters:
         Description: "The origin url to allow CORS requests from. This will be the base URL of your static SAM website."
         Type: "String"
 Resources:
-    GetSAMPartyCount:
+  MyApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+      DefinitionUri: ./swagger-final.yaml
+      StageName: Prod
+      Variables:
+        # NOTE: Before using this template, replace the <<region>> and <<account>> fields
+        #       in Lambda integration URI in the swagger file to region and accountId
+        #       you are deploying to
+        LambdaFunctionName: !Ref get
+    get:
         Type: AWS::Serverless::Function
         Properties:
             Handler: index.handler
             Runtime: nodejs4.3
             CodeUri: ./
-            Environment:
-                Variables:
-                    SAM_MULTIPLIER: !Ref SamMultipler
-                    ORIGIN_URL: !Ref OriginUrl
-            Events:
-              GetResource:
-                Type: Api
-                Properties:
-                  Path: /sam
-                  Method: get
