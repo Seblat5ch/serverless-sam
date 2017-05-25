@@ -1,7 +1,7 @@
 version: 0.0
 environment_variables:
     plaintext:
-        "INPUT_FILE": "saml.json"
+        "INPUT_FILE": "saml.yaml"
         "S3_BUCKET": ""
 containers:
     LambdaFunctions:
@@ -13,7 +13,7 @@ containers:
                     - sed -i 's/111111111111/844633438632/g' swagger-final.yaml
                     - pip install --upgrade --user awscli
                     - aws --version
-                    - aws cloudformation package --use-json --template $INPUT_FILE --s3-bucket $S3_BUCKET --output-template post-saml.yaml 
+                    - aws cloudformation package --template $INPUT_FILE --s3-bucket $S3_BUCKET --output-template post-saml.yaml 
                     - cat post-saml.yaml                    
         artifacts:
             files:
