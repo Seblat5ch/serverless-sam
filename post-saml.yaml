@@ -1,0 +1,362 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Simple API Endpoint configured using Swagger specified inline and backed
+  by a Lambda function
+Resources:
+  MyApi:
+    Properties:
+      DefinitionUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/e867e355ca0697eacecd664f3f43cf3c
+      StageName: Prod
+      Variables:
+        LambdaFunctionName:
+          Ref: get
+    Type: AWS::Serverless::Api
+  RootRole:
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+        - Action:
+          - sts:AssumeRole
+          Effect: Allow
+          Principal:
+            Service:
+            - lambda.amazonaws.com
+        Version: 2012-10-17
+      Path: /
+    Type: AWS::IAM::Role
+  about:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/a3a8e84950ed675c486563c4c47f922b
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-about
+      Handler: about.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+  addcategory:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/4eed90ad9903a842792e7d4490e8689a
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-addcategory
+      Handler: add_category.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+  contact:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/e3dbeb3fbdfb8c1e25fd1b0650028ec3
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-contact
+      Handler: contact.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+  deletepost:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/c7e8dfdea905c02fae677b56a5dd0a0a
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-deletepost
+      Handler: delete_post.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+  editcategory:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/bc57475163b889fb426d4249bac4853c
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-editcategory
+      Handler: edit_category.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+  get:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/393e8f5f06f1205ef87499f553de5c1a
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-get
+      Handler: get.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+  getcategories:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/14e50600351cded7b356784b1ace75f8
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-getcategories
+      Handler: get_categories.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+  getpost:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/570ac5fe9bd66bde22984303edb0b6a6
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-getpost
+      Handler: get_post.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+  getpostadmin:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/96e6ff41b736b2d3b3b80c7638776a14
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-getpostadmin
+      Handler: get_post_admin.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+  getpostbycatagory:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/aa0fde1e4dc0d51f5ec0fda66ffd8b80
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-getpostsbycategory
+      Handler: get_posts_by_category.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+  getsettings:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/d37eb7e681254635dd3005cd9997ab10
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-getsettings
+      Handler: get_settings.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+  listposts:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/00e5d338cf9db2175d71014453d744c6
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-listposts
+      Handler: list_posts.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+  listpostsadmin:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/e8ead2fdbd96234b8d3d989bf23af9a3
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-listpostsadmin
+      Handler: list_posts_admin.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+  login:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/0c47ecd0882c9baa7f3f8fb0a6143efb
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-login
+      Handler: login.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+  movecategory:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/6e33644f090e9c9377d56e69d81de52c
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-movecategory
+      Handler: move_category.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+  publishpost:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/0eac4ea8524856a8b4e0d9ff6fc735b0
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-publishpost
+      Handler: publish_post.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+  removecategory:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/c4d95f554445b3778228c34fbce34fe3
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-removecategory
+      Handler: remove_category.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+  rss:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/731ca736ae8166e772acc258e2b67edb
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-rss
+      Handler: rss.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+  sendmessage:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/2d1479673185ffee4b28b1a321bbd839
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-sendmessage
+      Handler: send_message.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+  setsettings:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/bcde0ba339ae78b8345eebae89ed81d3
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-setsettings
+      Handler: set_settings.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+  unpublishpost:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/886a3d69fbe9cc8ead07ade5331aeb23
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-unpublishpost
+      Handler: unpublish_post.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+  uploadimage:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/474f06e4d4e492b0cebc68611eeae69a
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-uploadimage
+      Handler: upload_image.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+  uploadpost:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/ef3f77891d5b350eb9e65d33ac975217
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-uploadpost
+      Handler: upload_post.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+  uploadtemplateimage:
+    Properties:
+      CodeUri: s3://serverless-app-844633438632-us-east-1-cfnautogen/8d69842230756ea61a8109c34c685a04
+      FunctionName:
+        Fn::Sub: ${AWS::StackName}-uploadtemplateimage
+      Handler: upload_template_image.handler
+      MemorySize: 512
+      Role:
+        Fn::GetAtt:
+        - RootRole
+        - Arn
+      Runtime: nodejs4.3
+      Timeout: 10
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31
