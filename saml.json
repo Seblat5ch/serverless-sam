@@ -22,9 +22,7 @@
                 "StageName": "Prod",
                 "DefinitionUri": "./swagger-final.yaml",
                 "Variables": {
-                    "LambdaFunctionName": {
-                    "Ref": "get"
-}
+                    "LambdaFunctionName": "get"
                 }
             }
         },
