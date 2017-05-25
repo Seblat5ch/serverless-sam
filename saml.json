@@ -27,15 +27,16 @@
             "Type": "AWS::Serverless::Api",
             "Properties": {
                 "StageName": "Prod"
-            },
-            "DefinitionBody": {
-                "Fn::Transform": {
-                    "Name": "AWS::Include",
-                    "Parameters": {
-                        "Location": "s3://all-ctrail-logs-east-1/swagger-final.yaml"
+                "DefinitionBody": {
+                    "Fn::Transform": {
+                        "Name": "AWS::Include",
+                        "Parameters": {
+                            "Location": "s3://all-ctrail-logs-east-1/swagger-final.yaml"
+                        }
                     }
-                }
+                }                
             }
+
         },
         "RootRole": {
             "Type": "AWS::IAM::Role",
