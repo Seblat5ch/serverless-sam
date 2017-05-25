@@ -22,7 +22,7 @@
                 }
             }
         },
-        "APIGateway": {
+        "APIGatewa": {
             "DependsOn": "get",
             "Type": "AWS::Serverless::Api",
             "Properties": {
