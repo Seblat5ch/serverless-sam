@@ -11,8 +11,6 @@ containers:
                     - ls
                     - sed -i 's/REGION/us-east-1/g' swagger-final.yaml
                     - sed -i 's/111111111111/844633438632/g' swagger-final.yaml
-                    - grep 844633438632 swagger-final.yaml
-                    - grep us-east-1 swagger-final.yaml                    
                     - pip install --upgrade --user awscli
                     - aws --version
                     - aws cloudformation package --use-json --template $INPUT_FILE --s3-bucket $S3_BUCKET --output-template post-saml.yaml 
