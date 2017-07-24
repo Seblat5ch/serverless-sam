@@ -1,16 +1,21 @@
 version: 0.0
 environment_variables:
     plaintext:
-        "INPUT_FILE": "saml.yaml"
+        "INPUT_FILE": "saml.json"
         "S3_BUCKET": ""
 containers:
     LambdaFunctions:
         phases:
             during_build:
                 commands:
-                    - npm install
-                    - aws cloudformation package --template $INPUT_FILE --s3-bucket $S3_BUCKET --output-template post-saml.yaml
+                    - ls
+                    - sed -i 's/REGION/us-east-1/g' swagger-final.yaml
+                    - sed -i 's/111111111111/844633438632/g' swagger-final.yaml
+                    - pip install --upgrade --user awscli
+                    - aws --version
+                    - npm install                    
+                    - aws cloudformation package --use-json --template $INPUT_FILE --s3-bucket $S3_BUCKET --output-template post-saml.yaml 
+                    - cat post-saml.yaml                    
         artifacts:
             files:
                 - post-saml.yaml
-                - beta.json
