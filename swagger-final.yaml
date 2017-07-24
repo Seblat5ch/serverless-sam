@@ -2,7 +2,7 @@
 swagger: "2.0"
 info:
   version: "2017-05-16T09:50:08Z"
-  title: "blog1"
+  title: "ServerLess"
 basePath: "/prod"
 schemes:
 - "https"
